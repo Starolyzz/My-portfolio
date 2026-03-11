@@ -537,6 +537,12 @@
       font-size: 1rem;
       color: var(--accent);
     }
+    .footer-built {
+      font-family: 'Caveat', cursive;
+      font-size: 0.95rem;
+      color: var(--accent);
+      opacity: 0.7;
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -799,9 +805,9 @@
       <h2 class="contact-heading">Let's<br /><em>work</em><br />together.</h2>
     </div>
     <div class="contact-links reveal" style="transition-delay:0.1s">
-      <a href="mailto:thxngxyen.work@gmail.com" class="contact-link">
+      <a href="/cdn-cgi/l/email-protection#097d6171676e71706c67277e667b62496e64686065276a6664" class="contact-link">
         <span class="link-label">Email</span>
-        <span class="link-meta">thxngxyen.work@gmail.com</span>
+        <span class="link-meta"><span class="__cf_email__" data-cfemail="196d7161777e61607c77376e766b72597e74787075377a7674">[email&#160;protected]</span></span>
         <span class="link-arrow">↗</span>
       </a>
       <a href="https://www.instagram.com/thxngxyen/" target="_blank" rel="noopener" class="contact-link">
@@ -820,10 +826,10 @@
   <!-- FOOTER -->
   <footer>
     <span class="footer-copy">© 2025 Thu Nguyen. All rights reserved.</span>
-    <span class="footer-mark">✦</span>
+    <span class="footer-built">Designed & built by me ✦</span>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── CURSOR ──
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('cursor-ring');
@@ -893,10 +899,4 @@
 
     // ── SCROLL REVEAL ──
     const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => obs.observe(el));
-  </script>
-</body>
-</html>
+    const obs = new I
