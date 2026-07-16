@@ -383,93 +383,6 @@
       color: var(--muted);
     }
 
-    /* ── BONUS PROJECT ── */
-    #bonus {
-      padding: 6rem 3rem;
-      max-width: 1200px; margin: 0 auto;
-    }
-    .bonus-card {
-      border: 1px solid var(--border);
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: center;
-      background: rgba(168,191,255,0.02);
-      transition: background 0.3s;
-    }
-    .bonus-card:hover { background: rgba(168,191,255,0.05); }
-    .bonus-badge {
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: var(--accent);
-      padding: 0.3rem 0.7rem;
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-    .bonus-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 300;
-      color: var(--warm);
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    .bonus-sub {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
-    .bonus-desc {
-      font-size: 0.78rem;
-      line-height: 1.9;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .bonus-link {
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(168,191,255,0.3);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-    .bonus-link:hover { border-color: var(--accent); }
-    .bonus-visual {
-      aspect-ratio: 4/3;
-      background: var(--navy-mid);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .bonus-vr-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      font-weight: 300;
-      color: rgba(168,191,255,0.08);
-      letter-spacing: -0.05em;
-      user-select: none;
-    }
-    .bonus-award-badge {
-      position: absolute;
-      bottom: 1rem; right: 1rem;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(168,191,255,0.3);
-      padding: 0.4rem 0.8rem;
-      background: rgba(8,13,26,0.8);
-    }
-
     /* ── CONTACT ── */
     #contact {
       padding: 8rem 3rem;
@@ -563,12 +476,11 @@
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
-      #hero, #about, #work, #experience, #bonus, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+      #hero, #about, #work, #experience, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
       #about { grid-template-columns: 1fr; gap: 3rem; }
       .projects-grid { grid-template-columns: 1fr 1fr; }
       .exp-grid { grid-template-columns: 1fr; gap: 2rem; }
       .exp-aside-label { position: static; font-size: 2rem; }
-      .bonus-card { grid-template-columns: 1fr; gap: 2rem; }
       #contact { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 600px) {
@@ -717,12 +629,23 @@
 
         <div class="exp-item reveal">
           <div class="exp-header">
-            <span class="exp-company">1st Choice Injury Network</span>
+            <span class="exp-company">All In Media Creative</span>
+            <span class="exp-date">Apr 2026 – Present</span>
+          </div>
+          <p class="exp-role">Freelance Graphic Designer · Remote</p>
+          <p class="exp-desc">
+            Design and deliver roughly 10 social media graphics a month across 5 active food & beverage client accounts, maintaining brand consistency for each. Production in Photoshop, Illustrator, and Canva — promotional, menu-special, and event/announcement graphics built to each client's brand guidelines. Coordinate with the agency team to hit schedules across concurrent accounts, and develop reusable branded templates to streamline recurring content.
+          </p>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <span class="exp-company">Houston Pain Relief &amp; Wellness Clinic</span>
             <span class="exp-date">Jul 2024 – Feb 2026</span>
           </div>
-          <p class="exp-role">Marketing Assistant (AM) · IT Assistant (PM) · Houston, TX</p>
+          <p class="exp-role">Marketing &amp; IT Assistant · Houston, TX</p>
           <p class="exp-desc">
-            Dual-role position across two departments simultaneously. Mornings: visual graphics for hospitality brands across digital and print — logos, brand identities, menus, social media content, email campaigns, and e-commerce web updates through the company's consulting arm, Principle Consulting. Afternoons: UI/UX mockups, interface improvements, .NET MVC application development, and SQL stored procedure work.
+            Produced weekly email campaigns, 2–3 social posts a week, and 1–2 print pieces a month, keeping brand consistency across digital and print and meeting every campaign deadline. Designed 15+ logos and led 2 large-scale brand identity projects. Maintained and audited e-commerce content to support new product launches, and built and maintained business applications on .NET MVC — shipping UI/UX improvements roughly every 3 weeks and writing SQL stored procedures to keep application data accurate.
           </p>
         </div>
 
@@ -733,7 +656,7 @@
           </div>
           <p class="exp-role">Volunteer Game Artist · Remote</p>
           <p class="exp-desc">
-            Collaborated with a team of artists and developers to create 2D and 3D assets for an indie game project. Character models, environments, and UI elements — maintaining consistency with the game's artistic vision and technical requirements.
+            Collaborated with a 15+ person team of artists and developers to create 2D and 3D assets across two indie game projects, hitting production timelines. Created character assets for one project, and designed the full main-menu UI and supporting elements — pause menu, buttons, health bar — for the other.
           </p>
         </div>
 
@@ -759,30 +682,6 @@
           </p>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- BONUS: CHUPICUARO -->
-  <section id="bonus">
-    <div class="section-header reveal">
-      <span class="section-label">Beyond Graphic Design</span>
-    </div>
-    <div class="bonus-card reveal">
-      <div>
-        <span class="bonus-badge">🏆 1st Place · RedFest 2024</span>
-        <h3 class="bonus-title">Chupicuaro VR Exhibition</h3>
-        <p class="bonus-sub">Coder + Designer · Unity / SteamVR · 2024</p>
-        <p class="bonus-desc">
-          An immersive 3D VR environment built in Unity with SteamVR, replicating the ambiance of a real-world museum exhibition. Won 1st Place in the Simulation & Gaming category at RedFest 2024. Role spanned both design and code — environment design, interactive features, and full implementation.
-        </p>
-        <a href="https://starolyz.itch.io/chupicuaro-vr-exhibition" target="_blank" rel="noopener" class="bonus-link">
-          View on itch.io ↗
-        </a>
-      </div>
-      <div class="bonus-visual">
-        <span class="bonus-vr-text">VR</span>
-        <span class="bonus-award-badge">RedFest 2024 · 1st Place</span>
       </div>
     </div>
   </section>
