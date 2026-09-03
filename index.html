@@ -6,534 +6,422 @@
   <title>Thu Nguyen — Graphic Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Caveat:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:      #080d1a;
-      --navy-mid:  #0d1526;
-      --navy-soft: #111d35;
-      --accent:    #a8bfff;
-      --accent2:   #c4d4ff;
-      --warm:      #f0eee8;
-      --muted:     #6b7a99;
-      --border:    rgba(168,191,255,0.12);
-      --star:      rgba(168,191,255,0.8);
+      --bg:        #f7f8fa;
+      --bg-raised: #eef1f6;
+      --line:      #e3e6ec;
+      --ink:       #14161c;
+      --accent:    #1d4ed8;
+      --accent-deep: #15379e;
+      --muted:     #5b6272;
+      --hairline:  rgba(20,22,28,0.09);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--navy);
-      color: var(--warm);
-      font-family: 'DM Mono', monospace;
-      font-weight: 300;
-      cursor: none;
-      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, ui-sans-serif, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── CUSTOM CURSOR ── */
-    #cursor {
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 12px 4px rgba(168,191,255,0.6);
-      transform: translate(-50%, -50%);
-      transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease;
-    }
-    #cursor-ring {
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
-      width: 32px; height: 32px;
-      border: 1px solid rgba(168,191,255,0.4);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    }
-    body:has(a:hover) #cursor,
-    body:has(button:hover) #cursor { width: 14px; height: 14px; }
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring { width: 48px; height: 48px; opacity: 0.6; }
-
-    /* ── STAR CANVAS ── */
-    #stars {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    }
+    em { font-style: italic; }
+    section { position: relative; z-index: 1; }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 3rem;
-      background: linear-gradient(to bottom, rgba(8,13,26,0.95) 0%, transparent 100%);
-      backdrop-filter: blur(2px);
+      padding: 1.15rem 1.75rem;
+      background: linear-gradient(to bottom, rgba(247,248,250,0.97) 0%, rgba(247,248,250,0.92) 80%, rgba(247,248,250,0) 100%);
+      backdrop-filter: blur(3px);
     }
+    .nav-id { display: flex; flex-direction: column; gap: 0.15rem; }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo em { color: var(--accent); font-style: normal; }
+    .nav-role {
+      font-size: 0.58rem;
       font-weight: 500;
-      color: var(--warm);
-      text-decoration: none;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .nav-logo span { color: var(--accent); }
-    .nav-links {
-      display: flex; gap: 2.5rem; list-style: none;
+    .nav-menu-btn {
+      background: none; border: 1px solid var(--hairline);
+      color: var(--ink);
+      width: 2.1rem; height: 2.1rem;
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: border-color .2s, color .2s;
     }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 300;
+    .nav-menu-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .nav-overlay {
+      position: fixed; inset: 0 0 auto 0; top: 0;
+      background: var(--bg);
+      padding: 5.5rem 1.75rem 2rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
+      z-index: 90;
+      transform: translateY(-100%);
+      transition: transform .35s ease;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .nav-overlay.open { transform: translateY(0); }
+    .nav-overlay a {
+      font-size: 1.5rem;
+      font-weight: 500;
       color: var(--muted);
       text-decoration: none;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--line);
+      transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-overlay a:hover { color: var(--accent); }
 
-    /* ── SECTIONS ── */
-    section { position: relative; z-index: 1; }
-
-    /* ── HERO ── */
+    /* ── HERO + SELECTED EXPERIENCE — one section, same row ── */
     #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      padding: 0 3rem;
-      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      align-items: start;
+      gap: 4rem;
+      padding: 6.5rem 1.75rem 4.5rem;
+      max-width: 1040px;
+      margin: 0 auto;
     }
+    .hero-text { padding-top: 0.3rem; }
     .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.3s forwards;
+      margin-bottom: 1.3rem;
     }
-    .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 10vw, 9rem);
+    .hero-headline {
       font-weight: 300;
-      line-height: 0.95;
-      color: var(--warm);
-      letter-spacing: -0.02em;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.5s forwards;
+      font-size: clamp(2.1rem, 6vw, 3.3rem);
+      line-height: 1.14;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      text-wrap: balance;
     }
-    .hero-name em {
-      font-style: italic;
-      color: var(--accent);
+    .hero-headline em { color: var(--accent); font-style: italic; font-weight: 500; }
+
+    .tl-label-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      border-bottom: 1px solid var(--hairline);
+      padding: 0 0 0.9rem;
+      margin-bottom: 0.25rem;
     }
-    .hero-tagline {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-top: 2rem;
-      max-width: 420px;
-      line-height: 1.8;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.7s forwards;
-    }
-    .hero-scroll {
-      margin-top: 4rem;
-      display: flex; align-items: center; gap: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 1s forwards;
-    }
-    .hero-scroll span {
-      font-size: 0.65rem;
+    .tl-label {
+      font-size: 0.62rem;
+      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--accent);
     }
-    .scroll-line {
-      width: 48px; height: 1px;
-      background: linear-gradient(to right, transparent, var(--accent), transparent);
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      padding: 8rem 3rem;
-      max-width: 1200px; margin: 0 auto;
+    .tl-count { font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; }
+    .tl-row {
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 6rem;
-      align-items: start;
+      grid-template-columns: 6.5rem 1fr;
+      gap: 1rem;
+      padding: 1.05rem 0;
+      border-bottom: 1px solid var(--line);
     }
-    .about-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2rem;
-    }
-    .about-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--warm);
-    }
-    .about-heading em { font-style: italic; color: var(--accent); }
-    .about-bio {
-      font-size: 0.82rem;
-      line-height: 2;
+    .tl-year {
+      font-size: 0.72rem;
       color: var(--muted);
-      margin-bottom: 2.5rem;
+      padding-top: 0.15rem;
+      font-variant-numeric: tabular-nums;
     }
-    .about-bio strong { color: var(--warm); font-weight: 400; }
-    .about-tools {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    .tl-org {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.005em;
     }
-    .tool-tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.8rem;
-      border-radius: 2px;
-      background: rgba(168,191,255,0.04);
-    }
-    .about-stats {
-      display: flex; flex-direction: column; gap: 2rem;
-      padding-top: 0.5rem;
-    }
-    .stat-item { border-left: 1px solid var(--border); padding-left: 1.5rem; }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
+    .tl-role { font-size: 0.74rem; font-weight: 300; color: var(--muted); }
 
-    /* ── WORK ── */
-    #work {
-      padding: 6rem 3rem 8rem;
-      max-width: 1200px; margin: 0 auto;
-    }
-    .section-header {
+    /* ── SELECTED WORK ── */
+    #work { padding: 1rem 0 4rem; }
+    .work-head {
       display: flex; align-items: baseline; justify-content: space-between;
-      margin-bottom: 4rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1.5rem;
+      padding: 0 1.75rem 1.6rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--hairline);
     }
-    .section-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
+    .work-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+    .work-count { font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; }
+
+    .work-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.75rem 1.75rem 0;
     }
-    .section-count {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: var(--border);
-    }
-    .project-card {
-      background: var(--navy);
-      padding: 2.5rem;
-      text-decoration: none;
-      color: inherit;
+    .work-cell {
+      flex: 1 1 calc(50% - 0.875rem);
+      background: var(--bg);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+    .work-cell--full { flex-basis: 100%; }
+    .work-thumb {
       position: relative;
+      width: 100%;
+      aspect-ratio: 4/5;
       overflow: hidden;
-      transition: background 0.3s ease;
-      min-height: 320px;
+      background: var(--bg-raised);
     }
-    .project-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(168,191,255,0.06) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .work-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .6s cubic-bezier(.2,.7,.2,1);
     }
-    .project-card:hover { background: var(--navy-soft); }
-    .project-card:hover::before { opacity: 1; }
-    .project-card:hover .card-arrow { transform: translate(4px, -4px); opacity: 1; }
-    .card-num {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      margin-bottom: 2rem;
-      opacity: 0.7;
+    .work-cell:hover .work-thumb img { transform: scale(1.045); }
+    .work-arrow {
+      position: absolute; top: 0.7rem; right: 0.7rem;
+      width: 1.8rem; height: 1.8rem;
+      border-radius: 50%;
+      background: rgba(247,248,250,0.9);
+      color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity .25s ease, transform .25s ease;
     }
-    .card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      font-weight: 400;
-      color: var(--warm);
-      line-height: 1.2;
-      margin-bottom: 0.6rem;
-      flex: 1;
-    }
-    .card-client {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .card-tags {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-bottom: auto;
-    }
-    .card-tag {
-      font-size: 0.58rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(168,191,255,0.2);
-      padding: 0.2rem 0.55rem;
-      border-radius: 1px;
-    }
-    .card-arrow {
-      position: absolute;
-      top: 2rem; right: 2rem;
-      font-size: 1rem;
-      color: var(--accent);
-      opacity: 0;
-      transition: all 0.25s ease;
-    }
-    .card-img {
-      width: 100%; height: 160px;
-      object-fit: cover;
-      margin-bottom: 1.5rem;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-      filter: saturate(0.7);
-    }
-    .project-card:hover .card-img { opacity: 0.9; filter: saturate(1); }
-
-    /* ── EXPERIENCE ── */
-    #experience {
-      padding: 6rem 3rem;
-      max-width: 1200px; margin: 0 auto;
-    }
-    .exp-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 6rem;
-      margin-top: 4rem;
-    }
-    .exp-aside { position: relative; }
-    .exp-aside-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      font-weight: 300;
-      color: var(--warm);
-      line-height: 1.1;
-      position: sticky;
-      top: 8rem;
-    }
-    .exp-aside-label em { color: var(--accent); font-style: italic; }
-    .exp-list { display: flex; flex-direction: column; gap: 0; }
-    .exp-item {
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-item:first-child { border-top: 1px solid var(--border); }
-    .exp-header {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 0.6rem;
-    }
-    .exp-company {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--warm);
-    }
-    .exp-date {
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-    .exp-role {
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-    .exp-desc {
-      font-size: 0.78rem;
-      line-height: 1.9;
-      color: var(--muted);
-    }
-
-    /* ── CONTACT ── */
-    #contact {
-      padding: 8rem 3rem;
-      max-width: 1200px; margin: 0 auto;
+    .work-cell:hover .work-arrow { opacity: 1; transform: translateY(0); }
+    .work-collage {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-      border-top: 1px solid var(--border);
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      background: var(--line);
+      height: 100%;
     }
-    .contact-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--warm);
-    }
-    .contact-heading em { font-style: italic; color: var(--accent); }
-    .contact-links {
-      display: flex; flex-direction: column; gap: 0;
-    }
-    .contact-link {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--warm);
-      transition: padding-left 0.2s ease;
-    }
-    .contact-link:first-child { border-top: 1px solid var(--border); }
-    .contact-link:hover { padding-left: 0.5rem; }
-    .contact-link:hover .link-label { color: var(--accent); }
-    .contact-link:hover .link-arrow { transform: translate(4px, -4px); }
-    .link-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
-      transition: color 0.2s;
-    }
-    .link-meta {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-    .link-arrow {
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: transform 0.2s ease;
-    }
+    .work-collage img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 2rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid var(--border);
-      position: relative; z-index: 1;
+    .work-cap {
+      padding: 0.95rem 1.1rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
-    .footer-copy {
+    .work-cap-top { display: flex; align-items: baseline; gap: 0.6rem; }
+    .work-num { font-size: 0.66rem; font-weight: 600; color: var(--accent); }
+    .work-title { font-size: 0.92rem; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+    .work-meta {
       font-size: 0.62rem;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT — full row ── */
+    #about {
+      padding: 5rem 1.75rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      gap: 4.5rem;
+    }
+    .about-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+    .about-heading {
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .about-heading em { color: var(--accent); font-style: italic; font-weight: 500; }
+    .about-bio { font-size: 0.82rem; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 1.6rem; }
+    .about-bio strong { color: var(--ink); font-weight: 500; }
+    .about-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tool-tag {
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--hairline);
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      background: rgba(29,78,216,0.05);
+    }
+
+    /* ── FOOTER — carries Instagram + LinkedIn ── */
+    footer {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      padding: 1.75rem;
+      border-top: 1px solid var(--hairline);
+      font-size: 0.68rem;
       color: var(--muted);
     }
-    .footer-mark {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: var(--accent);
+    .footer-social { display: flex; gap: 1.5rem; }
+    .footer-social a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s;
     }
-    .footer-built {
-      font-family: 'Caveat', cursive;
-      font-size: 0.95rem;
-      color: var(--accent);
-      opacity: 0.7;
-    }
+    .footer-social a:hover { color: var(--accent); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      #hero, #about, #work, #experience, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
-      #about { grid-template-columns: 1fr; gap: 3rem; }
-      .projects-grid { grid-template-columns: 1fr 1fr; }
-      .exp-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .exp-aside-label { position: static; font-size: 2rem; }
-      #contact { grid-template-columns: 1fr; gap: 3rem; }
+      #hero { grid-template-columns: 1fr; gap: 2.5rem; }
     }
-    @media (max-width: 600px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .hero-name { font-size: 3.5rem; }
+    @media (max-width: 640px) {
+      #about { grid-template-columns: 1fr; gap: 1.5rem; }
+      .tl-row { grid-template-columns: 5.5rem 1fr; }
+      .work-grid { gap: 1.25rem; padding: 1.25rem 1.25rem 0; }
+      .work-cell { flex-basis: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
-  <canvas id="stars"></canvas>
-
-  <!-- NAV -->
   <nav>
-    <a href="#hero" class="nav-logo">Thu<span> ✦ </span>Nguyen</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-id">
+      <a href="#hero" class="nav-logo">Thu <em>✦</em> Nguyen</a>
+      <span class="nav-role">Graphic Designer</span>
+    </div>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
   </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
 
-  <!-- HERO -->
   <section id="hero">
-    <p class="hero-eyebrow">Graphic Designer · Great Falls, VA</p>
-    <h1 class="hero-name">Thu <em>Nguyen</em></h1>
-    <p class="hero-tagline">
-      I make things that feel like<br />
-      they were always meant to look that way.
-    </p>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll to explore</span>
+    <div class="hero-text">
+      <p class="hero-eyebrow">Graphic Designer · Great Falls, VA</p>
+      <h1 class="hero-headline">I'm Thu, a designer who sweats the <em>details</em>.</h1>
+    </div>
+    <div class="tl-block">
+      <div class="tl-label-row">
+        <span class="tl-label">Selected Experience</span>
+        <span class="tl-count">04 Roles</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">2026 — Present</span>
+        <div><p class="tl-org">All In Media Creative</p><p class="tl-role">Freelance Graphic Designer · Remote</p></div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">2024 — 2026</span>
+        <div><p class="tl-org">Houston Pain Relief &amp; Wellness Clinic</p><p class="tl-role">Marketing &amp; IT Assistant · Houston, TX</p></div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">2024</span>
+        <div><p class="tl-org">[P1] Game</p><p class="tl-role">Volunteer Game Artist · Remote</p></div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">2022</span>
+        <div><p class="tl-org">Papellerie</p><p class="tl-role">Graphic Design Intern · Houston, TX</p></div>
+      </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="reveal">
-      <p class="about-label">About</p>
-      <h2 class="about-heading">Detail-<em>oriented</em><br />by habit.</h2>
+  <section id="work">
+    <div class="work-head">
+      <span class="work-label">Selected Work</span>
+      <span class="work-count">05 Projects</span>
     </div>
-    <div class="reveal" style="transition-delay:0.15s">
+
+    <div class="work-grid">
+      <a href="project-social-media.html" class="work-cell">
+        <div class="work-thumb">
+          <img src="images/cs-post-a.jpg" alt="Social media post design for R&B Tea Houston and The Claw Spot" />
+          <span class="work-arrow">↗</span>
+        </div>
+        <div class="work-cap">
+          <div class="work-cap-top"><span class="work-num">01</span><span class="work-title">Social Media Design</span></div>
+          <span class="work-meta">R&amp;B Tea Houston · The Claw Spot</span>
+        </div>
+      </a>
+
+      <a href="project-menu.html" class="work-cell">
+        <div class="work-thumb">
+          <img src="images/menu-placemat.jpg" alt="Placemat menu design for Di An Pho and R&B Tea Houston" />
+          <span class="work-arrow">↗</span>
+        </div>
+        <div class="work-cap">
+          <div class="work-cap-top"><span class="work-num">02</span><span class="work-title">Menu Design</span></div>
+          <span class="work-meta">Di An Pho · R&amp;B Tea Houston</span>
+        </div>
+      </a>
+
+      <a href="project-claw-spot-logo.html" class="work-cell">
+        <div class="work-thumb">
+          <img src="images/logo-claw-spot-render1.jpg" alt="The Claw Spot logo render" />
+          <span class="work-arrow">↗</span>
+        </div>
+        <div class="work-cap">
+          <div class="work-cap-top"><span class="work-num">03</span><span class="work-title">The Claw Spot Logo</span></div>
+          <span class="work-meta">The Claw Spot, Houston TX</span>
+        </div>
+      </a>
+
+      <a href="project-logo-collection.html" class="work-cell">
+        <div class="work-thumb">
+          <div class="work-collage">
+            <img src="images/logo-banh-mi-7am.jpg" alt="Banh Mi 7AM logo" />
+            <img src="images/logo-doi-xiu.jpg" alt="Doi Xiu logo" />
+            <img src="images/logo-drip-saigon.jpg" alt="Drip Saigon logo" />
+            <img src="images/logo-sac-dep.jpg" alt="Sac Dep logo" />
+          </div>
+          <span class="work-arrow">↗</span>
+        </div>
+        <div class="work-cap">
+          <div class="work-cap-top"><span class="work-num">04</span><span class="work-title">Logo Collection</span></div>
+          <span class="work-meta">10 Houston Brands</span>
+        </div>
+      </a>
+
+      <a href="project-flyers-posters.html" class="work-cell work-cell--full">
+        <div class="work-thumb">
+          <img src="images/flyer-carmeet-a.jpg" alt="Car meet event flyer" />
+          <span class="work-arrow">↗</span>
+        </div>
+        <div class="work-cap">
+          <div class="work-cap-top"><span class="work-num">05</span><span class="work-title">Flyers &amp; Posters</span></div>
+          <span class="work-meta">Event Work · Personal Projects</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div>
+      <p class="about-label">About</p>
+      <h2 class="about-heading">Detail-<em>oriented</em>,<br/>by habit.</h2>
+    </div>
+    <div>
       <p class="about-bio">
-        Designer working across <strong>brand identity, print, digital, and web</strong> —
-        logos, menus, social graphics, event posters, and everything in between.
-        Fluent in Adobe Creative Suite. Detail-oriented by habit, adaptable by necessity.
-        <br /><br />
-        Based in Great Falls, VA. Currently available for freelance and full-time work.
+        Designer working across <strong>brand identity, print, digital, and web</strong> — logos, menus,
+        social graphics, event posters, and everything in between. Fluent in Adobe Creative Suite.
+        Based in Great Falls, VA — currently available for freelance and full-time work.
       </p>
       <div class="about-tools">
         <span class="tool-tag">Photoshop</span>
@@ -547,252 +435,32 @@
     </div>
   </section>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="section-header reveal">
-      <span class="section-label">Selected Work</span>
-      <span class="section-count">05 Projects</span>
+  <footer id="contact">
+    <span>© 2026 Thu Nguyen. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/thxngxyen/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/thu-nguyen-220600/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <div class="projects-grid">
-
-      <a href="project-social-media.html" class="project-card reveal">
-        <span class="card-arrow">↗</span>
-        <span class="card-num">01</span>
-        <h3 class="card-title">Social Media Design</h3>
-        <p class="card-client">R&B Tea Houston · The Claw Spot</p>
-        <div class="card-tags">
-          <span class="card-tag">Instagram</span>
-          <span class="card-tag">Photoshop</span>
-          <span class="card-tag">Canva</span>
-        </div>
-      </a>
-
-      <a href="project-menu.html" class="project-card reveal" style="transition-delay:0.05s">
-        <span class="card-arrow">↗</span>
-        <span class="card-num">02</span>
-        <h3 class="card-title">Menu Design</h3>
-        <p class="card-client">Di An Pho · R&B Tea Houston</p>
-        <div class="card-tags">
-          <span class="card-tag">Print</span>
-          <span class="card-tag">InDesign</span>
-          <span class="card-tag">Illustrator</span>
-        </div>
-      </a>
-
-      <a href="project-claw-spot-logo.html" class="project-card reveal" style="transition-delay:0.1s">
-        <span class="card-arrow">↗</span>
-        <span class="card-num">03</span>
-        <h3 class="card-title">The Claw Spot Logo</h3>
-        <p class="card-client">The Claw Spot · Houston TX</p>
-        <div class="card-tags">
-          <span class="card-tag">Logo Design</span>
-          <span class="card-tag">Badge Emblem</span>
-          <span class="card-tag">24hr Brief</span>
-        </div>
-      </a>
-
-      <a href="project-logo-collection.html" class="project-card reveal" style="transition-delay:0.05s">
-        <span class="card-arrow">↗</span>
-        <span class="card-num">04</span>
-        <h3 class="card-title">Logo Collection</h3>
-        <p class="card-client">10 Houston Brands</p>
-        <div class="card-tags">
-          <span class="card-tag">Wordmark</span>
-          <span class="card-tag">Combination</span>
-          <span class="card-tag">Emblem</span>
-        </div>
-      </a>
-
-      <a href="project-flyers-posters.html" class="project-card reveal" style="transition-delay:0.1s">
-        <span class="card-arrow">↗</span>
-        <span class="card-num">05</span>
-        <h3 class="card-title">Flyers & Posters</h3>
-        <p class="card-client">Event Work · Personal Projects</p>
-        <div class="card-tags">
-          <span class="card-tag">Event Flyers</span>
-          <span class="card-tag">Album Cover</span>
-          <span class="card-tag">Movie Poster</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="exp-grid">
-      <div class="exp-aside reveal">
-        <p class="about-label" style="margin-bottom:1rem">Experience</p>
-        <h2 class="exp-aside-label">Where<br />I've<br /><em>worked.</em></h2>
-      </div>
-      <div class="exp-list">
-
-        <div class="exp-item reveal">
-          <div class="exp-header">
-            <span class="exp-company">All In Media Creative</span>
-            <span class="exp-date">Apr 2026 – Present</span>
-          </div>
-          <p class="exp-role">Freelance Graphic Designer · Remote</p>
-          <p class="exp-desc">
-            Design and deliver roughly 10 social media graphics a month across 5 active food & beverage client accounts, maintaining brand consistency for each. Production in Photoshop, Illustrator, and Canva — promotional, menu-special, and event/announcement graphics built to each client's brand guidelines. Coordinate with the agency team to hit schedules across concurrent accounts, and develop reusable branded templates to streamline recurring content.
-          </p>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-header">
-            <span class="exp-company">Houston Pain Relief &amp; Wellness Clinic</span>
-            <span class="exp-date">Jul 2024 – Feb 2026</span>
-          </div>
-          <p class="exp-role">Marketing &amp; IT Assistant · Houston, TX</p>
-          <p class="exp-desc">
-            Produced weekly email campaigns, 2–3 social posts a week, and 1–2 print pieces a month, keeping brand consistency across digital and print and meeting every campaign deadline. Designed 15+ logos and led 2 large-scale brand identity projects. Maintained and audited e-commerce content to support new product launches, and built and maintained business applications on .NET MVC — shipping UI/UX improvements roughly every 3 weeks and writing SQL stored procedures to keep application data accurate.
-          </p>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-header">
-            <span class="exp-company">[P1] Game</span>
-            <span class="exp-date">Jun 2024 – Oct 2024</span>
-          </div>
-          <p class="exp-role">Volunteer Game Artist · Remote</p>
-          <p class="exp-desc">
-            Collaborated with a 15+ person team of artists and developers to create 2D and 3D assets across two indie game projects, hitting production timelines. Created character assets for one project, and designed the full main-menu UI and supporting elements — pause menu, buttons, health bar — for the other.
-          </p>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-header">
-            <span class="exp-company">Papellerie</span>
-            <span class="exp-date">Jan 2022 – May 2022</span>
-          </div>
-          <p class="exp-role">Graphic Design Intern · Houston, TX</p>
-          <p class="exp-desc">
-            Adobe CC production work supporting the creative director in finalising client deliverables. 50% of contributed materials used in the final product. Collaborated with senior designers to develop sample material for client presentations.
-          </p>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-header">
-            <span class="exp-company">University of Houston</span>
-            <span class="exp-date">Graduated 2024</span>
-          </div>
-          <p class="exp-role">Bachelor of Science, Digital Media</p>
-          <p class="exp-desc">
-            Coursework spanning graphic design, 3D modelling, interactive media, and game development. Graduated with a 1st Place RedFest 2024 award in Simulation & Gaming.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="reveal">
-      <h2 class="contact-heading">Let's<br /><em>work</em><br />together.</h2>
-    </div>
-    <div class="contact-links reveal" style="transition-delay:0.1s">
-      <a href="/cdn-cgi/l/email-protection#097d6171676e71706c67277e667b62496e64686065276a6664" class="contact-link">
-        <span class="link-label">Email</span>
-        <span class="link-meta"><span class="__cf_email__" data-cfemail="196d7161777e61607c77376e766b72597e74787075377a7674">[email&#160;protected]</span></span>
-        <span class="link-arrow">↗</span>
-      </a>
-      <a href="https://www.instagram.com/thxngxyen/" target="_blank" rel="noopener" class="contact-link">
-        <span class="link-label">Instagram</span>
-        <span class="link-meta">@thxngxyen</span>
-        <span class="link-arrow">↗</span>
-      </a>
-      <a href="https://www.linkedin.com/in/thu-nguyen-220600/" target="_blank" rel="noopener" class="contact-link">
-        <span class="link-label">LinkedIn</span>
-        <span class="link-meta">thu-nguyen-220600</span>
-        <span class="link-arrow">↗</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-copy">© 2026 Thu Nguyen. All rights reserved.</span>
-    <span class="footer-built">Designed & built by me ✦</span>
+    <span>Designed &amp; built by me ✦</span>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── CURSOR ──
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animateCursor() {
-      cursor.style.left = mx + 'px';
-      cursor.style.top  = my + 'px';
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // ── STARS ──
-    const canvas = document.getElementById('stars');
-    const ctx    = canvas.getContext('2d');
-    let W, H, stars = [];
-
-    function resize() {
-      W = canvas.width  = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-
-    function initStars() {
-      stars = [];
-      const count = Math.floor((W * H) / 5000);
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.2 + 0.2,
-          a: Math.random(),
-          speed: Math.random() * 0.003 + 0.001,
-          phase: Math.random() * Math.PI * 2
+  <script>
+    (function(){
+      var btn = document.getElementById('menuBtn');
+      var overlay = document.getElementById('navOverlay');
+      if(btn && overlay){
+        btn.addEventListener('click', function(){
+          overlay.classList.toggle('open');
+          btn.textContent = overlay.classList.contains('open') ? '✕' : '☰';
+        });
+        overlay.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click', function(){
+            overlay.classList.remove('open');
+            btn.textContent = '☰';
+          });
         });
       }
-    }
-
-    let mouseX = W / 2, mouseY = H / 2;
-    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-
-    function drawStars(t) {
-      ctx.clearRect(0, 0, W, H);
-      const offsetX = (mouseX / W - 0.5) * 20;
-      const offsetY = (mouseY / H - 0.5) * 20;
-      stars.forEach(s => {
-        const pulse = 0.4 + 0.6 * Math.sin(t * s.speed * 1000 + s.phase);
-        ctx.beginPath();
-        ctx.arc(s.x + offsetX * s.r, s.y + offsetY * s.r, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(168,191,255,${s.a * pulse})`;
-        ctx.fill();
-      });
-    }
-
-    let then = 0;
-    function loop(t) {
-      const dt = t - then;
-      if (dt > 16) { drawStars(t); then = t; }
-      requestAnimationFrame(loop);
-    }
-
-    resize(); initStars(); loop(0);
-    window.addEventListener('resize', () => { resize(); initStars(); });
-
-    // ── SCROLL REVEAL ──
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => obs.observe(el));
-
+    })();
   </script>
 </body>
 </html>
