@@ -95,8 +95,8 @@
     /* ── HERO + SELECTED EXPERIENCE — one section, same row ── */
     #hero {
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      align-items: start;
+      grid-template-columns: 2fr 1fr;
+      align-items: end;
       gap: 4rem;
       padding: 6.5rem 1.75rem 4.5rem;
       max-width: 1600px;
@@ -120,27 +120,20 @@
       text-wrap: balance;
     }
     .hero-headline em { color: var(--accent); font-style: italic; font-weight: 500; }
+    .hero-sub {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-top: 1.1rem;
+      max-width: 34rem;
+    }
 
-    .tl-label-row {
-      display: flex; align-items: baseline; justify-content: space-between;
-      border-bottom: 1px solid var(--hairline);
-      padding: 0 0 0.9rem;
-      margin-bottom: 0.25rem;
-    }
-    .tl-label {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .tl-count { font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; }
     .tl-row {
       display: grid;
       grid-template-columns: 6.5rem 1fr;
       gap: 1rem;
       padding: 1.05rem 0;
-      border-bottom: 1px solid var(--line);
     }
     .tl-year {
       font-size: 0.72rem;
@@ -164,7 +157,6 @@
       padding: 0 1.75rem 1.6rem;
       max-width: 1600px;
       margin: 0 auto;
-      border-bottom: 1px solid var(--hairline);
     }
     .work-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
     .work-count { font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; }
@@ -246,20 +238,16 @@
       padding: 5rem 1.75rem;
       max-width: 1600px;
       margin: 0 auto;
+    }
+    .about-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+    .about-row {
       display: grid;
-      grid-template-columns: 0.7fr 1fr;
+      grid-template-columns: 2fr 1fr;
       gap: 4.5rem;
+      align-items: start;
     }
-    .about-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
-    .about-heading {
-      font-size: 2rem;
-      font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-    }
-    .about-heading em { color: var(--accent); font-style: italic; font-weight: 500; }
     .about-bio { font-size: 0.82rem; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 1.6rem; }
+    .about-bio:last-child { margin-bottom: 0; }
     .about-bio strong { color: var(--ink); font-weight: 500; }
     .about-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tool-tag {
@@ -292,7 +280,7 @@
       #hero { grid-template-columns: 1fr; gap: 2.5rem; }
     }
     @media (max-width: 640px) {
-      #about { grid-template-columns: 1fr; gap: 1.5rem; }
+      .about-row { grid-template-columns: 1fr; gap: 1.5rem; }
       .tl-row { grid-template-columns: 5.5rem 1fr; }
       .work-grid { gap: 1.25rem; padding: 1.25rem 1.25rem 0; }
       .work-cell { flex-basis: 100%; }
@@ -317,13 +305,10 @@
   <section id="hero">
     <div class="hero-text">
       <p class="hero-eyebrow">Graphic Designer · Great Falls, VA</p>
-      <h1 class="hero-headline">I'm Thu, a designer who sweats the <em>details</em>.</h1>
+      <h1 class="hero-headline">Hi, I'm Thu ★, a designer that loves the color <em>blue</em>.</h1>
+      <p class="hero-sub">I'm passionate about exploring a brand's story and how it can be told through visuals.</p>
     </div>
     <div class="tl-block">
-      <div class="tl-label-row">
-        <span class="tl-label">Selected Experience</span>
-        <span class="tl-count">04 Roles</span>
-      </div>
       <div class="tl-row">
         <span class="tl-year">2026 — Present</span>
         <div><p class="tl-org">All In Media Creative</p><p class="tl-role">Freelance Graphic Designer · Remote</p></div>
@@ -413,16 +398,12 @@
   </section>
 
   <section id="about">
-    <div>
-      <p class="about-label">About</p>
-      <h2 class="about-heading">Detail-<em>oriented</em>,<br/>by habit.</h2>
-    </div>
-    <div>
-      <p class="about-bio">
-        Designer working across <strong>brand identity, print, digital, and web</strong> — logos, menus,
-        social graphics, event posters, and everything in between. Fluent in Adobe Creative Suite.
-        Based in Great Falls, VA — currently available for freelance and full-time work.
-      </p>
+    <p class="about-label">About</p>
+    <div class="about-row">
+      <div>
+        <p class="about-bio">A freelance graphic designer based in Great Falls, VA, with a strong passion for design and visual arts. I've built a solid foundation through academic training and hands-on experience in both corporate and agency settings across a range of creative projects.</p>
+        <p class="about-bio">My core strengths include 2D design and the development of visual concepts and brand identity. I love creating ideas from scratch and exploring different media. I also love learning new things to add to my skillset (psst — I'm learning motion design), because as they say, "a jack of all trades is a master of none, but oftentimes better than a master of one."</p>
+      </div>
       <div class="about-tools">
         <span class="tool-tag">Photoshop</span>
         <span class="tool-tag">Illustrator</span>
