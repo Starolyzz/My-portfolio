@@ -95,7 +95,7 @@
     /* ── HERO + SELECTED EXPERIENCE — one section, same row ── */
     #hero {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
       align-items: end;
       gap: 4rem;
       padding: 6.5rem 1.75rem 4.5rem;
@@ -154,7 +154,7 @@
     #work { padding: 1rem 0 4rem; }
     .work-head {
       display: flex; align-items: baseline; justify-content: space-between;
-      padding: 0 1.75rem 1.6rem;
+      padding: 0 1.75rem;
       max-width: 1600px;
       margin: 0 auto;
     }
@@ -184,11 +184,13 @@
     .work-thumb {
       position: relative;
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       background: var(--bg-raised);
     }
-    .work-thumb img {
+    .work-thumb > img {
+      position: absolute;
+      inset: 0;
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform .6s cubic-bezier(.2,.7,.2,1);
     }
@@ -206,12 +208,13 @@
     }
     .work-cell:hover .work-arrow { opacity: 1; transform: translateY(0); }
     .work-collage {
+      position: absolute;
+      inset: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 2px;
       background: var(--line);
-      height: 100%;
     }
     .work-collage img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
