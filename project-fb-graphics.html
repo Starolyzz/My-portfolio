@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F&amp;B Graphics — Thu Nguyen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f7f8fa;
+      --bg-raised: #eef1f6;
+      --line:      #e3e6ec;
+      --ink:       #14161c;
+      --accent:    #1d4ed8;
+      --accent-deep: #15379e;
+      --muted:     #5b6272;
+      --hairline:  rgba(20,22,28,0.09);
+      --paper:     #f6efd8;
+      --paper-ink: #2a2318;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, ui-sans-serif, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    section, .project-content, .next-project, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.15rem 1.75rem;
+      background: linear-gradient(to bottom, rgba(247,248,250,0.97) 0%, rgba(247,248,250,0.92) 80%, rgba(247,248,250,0) 100%);
+      backdrop-filter: blur(3px);
+    }
+    .nav-back {
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back::before { content: '←'; font-size: 0.9rem; }
+    .nav-logo {
+      font-size: 0.92rem; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    /* HERO */
+    .project-hero {
+      min-height: 46vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 1.75rem 3.5rem;
+      max-width: 1600px; margin: 0 auto;
+    }
+    .project-num {
+      font-size: 0.64rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .deadline-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #fff; background: var(--accent);
+      padding: 0.35rem 0.9rem; margin-bottom: 1.3rem; width: fit-content;
+    }
+    .project-title {
+      font-weight: 300;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.02;
+      color: var(--ink); letter-spacing: -0.02em;
+    }
+    .project-title em { font-style: italic; color: var(--accent); font-weight: 500; }
+    .project-subtitle {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 1.2rem;
+    }
+
+    /* META BAR */
+    .meta-bar {
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 1.6rem 1.75rem;
+      max-width: 1600px; margin: 0 auto;
+      display: flex; gap: 3rem; flex-wrap: wrap;
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 0.35rem; }
+    .meta-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .meta-value { font-size: 0.76rem; color: var(--ink); }
+
+    /* CONTENT */
+    .project-content { max-width: 1600px; margin: 0 auto; padding: 4.5rem 1.75rem; }
+
+    .case-grid { display: grid; grid-template-columns: 170px 1fr; gap: 0 3.5rem; margin-bottom: 4.5rem; }
+    .case-label {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); padding-top: 0.3rem;
+      position: sticky; top: 5rem; height: fit-content;
+    }
+    .case-heading {
+      font-size: 1.55rem; font-weight: 500; font-style: italic;
+      color: var(--ink); line-height: 1.25; margin-bottom: 1.1rem;
+    }
+    .case-text { font-size: 0.82rem; line-height: 1.9; color: var(--muted); margin-bottom: 1rem; }
+    .case-text strong { color: var(--ink); font-weight: 600; }
+    .case-bullets { list-style: none; margin: 1rem 0 1.5rem; }
+    .case-bullets li { font-size: 0.8rem; line-height: 1.8; color: var(--muted); padding-left: 1.1rem; position: relative; margin-bottom: 0.5rem; }
+    .case-bullets li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .pull-quote {
+      border-left: 2px solid var(--accent);
+      padding: 0.7rem 0 0.7rem 1.4rem; margin: 1.8rem 0;
+      font-size: 1.15rem; font-weight: 400; font-style: italic;
+      color: var(--ink); line-height: 1.5;
+    }
+    .style-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+    .style-tag {
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--hairline);
+      padding: 0.35rem 0.85rem; background: rgba(29,78,216,0.05);
+    }
+
+    .section-divider { border: none; border-top: 1px solid var(--hairline); margin: 3.5rem 0; }
+
+    .gallery-label {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .gallery-label::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
+
+    .gallery-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-bottom: 3px; }
+    .gallery-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-bottom: 3px; }
+    .gallery-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; margin-bottom: 3px; }
+
+    .gallery-item { aspect-ratio: 1; background: var(--bg-raised); overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-item-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 0.8rem;
+      background: linear-gradient(to top, rgba(10,10,14,0.82), transparent);
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fff; opacity: 0; transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-item-caption { opacity: 1; }
+
+    .gallery-full { width: 100%; overflow: hidden; margin-bottom: 3px; background: var(--bg-raised); position: relative; }
+    .gallery-full img { width: 100%; display: block; transition: transform 0.4s; }
+    .gallery-full:hover img { transform: scale(1.01); }
+    .gallery-full .gallery-item-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 0.8rem;
+      background: linear-gradient(to top, rgba(10,10,14,0.82), transparent);
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fff; opacity: 0; transition: opacity 0.3s;
+    }
+    .gallery-full:hover .gallery-item-caption { opacity: 1; }
+
+    .img-placeholder {
+      width: 100%; height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5rem;
+      background: var(--bg-raised); border: 1px dashed var(--hairline);
+    }
+    .img-placeholder span:first-child { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .img-placeholder span:last-child { font-family: 'Caveat', cursive; font-size: 0.9rem; color: var(--accent); }
+
+    /* SCRAPS */
+    .scraps-zone { position: relative; min-height: 300px; margin: 3.5rem 0; border: 1px dashed var(--hairline); border-radius: 4px; }
+    .scrap {
+      position: absolute; background: var(--paper); color: var(--paper-ink);
+      padding: 0.8rem 1rem; font-family: 'Caveat', cursive; font-size: 1rem; line-height: 1.4;
+      max-width: 200px; box-shadow: 0 8px 20px -6px rgba(20,22,28,0.25);
+      cursor: grab; user-select: none; transition: box-shadow 0.2s, transform 0.2s; z-index: 10;
+    }
+    .scrap:active { cursor: grabbing; box-shadow: 0 12px 28px -6px rgba(20,22,28,0.35); }
+    .scrap.dragging { z-index: 999; transform: rotate(0deg) scale(1.04); }
+    .scrap-pin { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+    .scrap-zone-hint {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(20,22,28,0.18); pointer-events: none;
+    }
+
+    .next-project {
+      border-top: 1px solid var(--hairline);
+      max-width: 1600px; margin: 0 auto; padding: 3rem 1.75rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .next-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .next-link {
+      font-size: 1.5rem; font-weight: 500; color: var(--ink); text-decoration: none;
+      display: flex; align-items: center; gap: 1rem; transition: gap 0.2s;
+    }
+    .next-link:hover { gap: 1.4rem; }
+    .next-link:hover span { color: var(--accent); }
+    .next-link span { color: var(--muted); transition: color 0.2s; }
+
+    footer {
+      padding: 1.75rem; display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--hairline);
+      font-size: 0.66rem; color: var(--muted);
+    }
+    .footer-mark { color: var(--accent); font-weight: 600; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav, .project-hero, .meta-bar, .project-content, .next-project, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .case-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .case-label { position: static; }
+      .gallery-grid-4, .gallery-grid-3 { grid-template-columns: repeat(2,1fr); }
+      .meta-bar { gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid-4, .gallery-grid-3, .gallery-grid-2 { grid-template-columns: 1fr 1fr; }
+      .next-project { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">All Work</a>
+    <a href="index.html" class="nav-logo">Thu <span>✦</span> Nguyen</a>
+  </nav>
+
+  <div class="project-hero">
+    <p class="project-num">Project 01 · Social &amp; Print</p>
+    <h1 class="project-title">F&amp;B <em>Graphics</em></h1>
+    <p class="project-subtitle">Social Media · Story &amp; Print Flyers · Multiple Houston F&amp;B Clients</p>
+  </div>
+
+  <div class="meta-bar">
+    <div class="meta-item"><span class="meta-label">Clients</span><span class="meta-value">Casa Kenji · Aya Sushi · Copper Espresso Cafe · Others</span></div>
+    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">Jan 2025 – Present</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Marketing Assistant / Graphic Designer</span></div>
+    <div class="meta-item"><span class="meta-label">Tools</span><span class="meta-value">Photoshop · Illustrator · Canva</span></div>
+    <div class="meta-item"><span class="meta-label">Deliverables</span><span class="meta-value">Instagram posts · Story graphics · Print flyers</span></div>
+  </div>
+
+  <div class="project-content">
+
+    <div class="case-grid reveal">
+      <span class="case-label">The Brief</span>
+      <div class="case-body">
+        <h2 class="case-heading">Different menus, different rooms, one steady hand.</h2>
+        <p class="case-text">Across a handful of food &amp; beverage clients — <strong>Casa Kenji</strong>, <strong>Aya Sushi</strong>, <strong>Copper Espresso Cafe</strong>, and a few smaller one-off jobs — the ask was always the same shape: turn a promo, an event, an hours change, or a new menu item into something people would actually stop scrolling for.</p>
+        <p class="case-text">Each brand had its own personality to protect — Casa Kenji's late-night Latin energy, Aya Sushi's clean omakase feel, Copper's cozy café warmth — so nothing here was one template reused four ways. Every post was built around the specific brand it was for.</p>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="reveal">
+      <p class="gallery-label">Casa Kenji — 9 Posts</p>
+      <div class="gallery-grid-3">
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-latin-night-june4.jpg" alt="Casa Kenji Latin Night — June 4" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Latin Night — June 4</span></div>'" /><div class="gallery-item-caption">Latin Night — June 4</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-latin-night-june18.jpg" alt="Casa Kenji Latin Night — June 18" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Latin Night — June 18</span></div>'" /><div class="gallery-item-caption">Latin Night — June 18</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-latin-night-july2.jpg" alt="Casa Kenji Latin Night — July 2" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Latin Night — July 2</span></div>'" /><div class="gallery-item-caption">Latin Night — July 2</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-latin-night-aug27.jpg" alt="Casa Kenji Latin Night — Aug 27" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Latin Night — Aug 27</span></div>'" /><div class="gallery-item-caption">Latin Night — Aug 27</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-omakase.jpg" alt="Casa Kenji Omakase" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Omakase</span></div>'" /><div class="gallery-item-caption">Omakase</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-suki-suki.jpg" alt="Casa Kenji Suki Suki" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Suki Suki</span></div>'" /><div class="gallery-item-caption">Suki Suki</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-cocktail-menu.jpg" alt="Casa Kenji Cocktail Menu" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Cocktail Menu</span></div>'" /><div class="gallery-item-caption">Cocktail Menu</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-world-cup-2026.jpg" alt="Casa Kenji World Cup 2026" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>World Cup 2026</span></div>'" /><div class="gallery-item-caption">World Cup 2026</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/casa-kenji/social-media-posts/casa-kenji-meet-the-team-baby-edition.jpg" alt="Casa Kenji Meet the Team: Baby Edition" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Casa Kenji</span><span>Meet the Team: Baby Edition</span></div>'" /><div class="gallery-item-caption">Meet the Team: Baby Edition</div></div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="reveal">
+      <p class="gallery-label">Aya Sushi — 6 Posts</p>
+      <div class="gallery-grid-3">
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/aya-sushi/social-media-posts/aya-sushi-mamakase-flyer.jpg" alt="Aya Sushi Mamakase Flyer" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Aya Sushi</span><span>Mamakase Flyer</span></div>'" /><div class="gallery-item-caption">Mamakase Flyer</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/aya-sushi/social-media-posts/aya-sushi-mamakase-text-post.jpg" alt="Aya Sushi Mamakase Text Post" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Aya Sushi</span><span>Mamakase — Text Post</span></div>'" /><div class="gallery-item-caption">Mamakase — Text Post</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/aya-sushi/social-media-posts/aya-sushi-sake-vs-wine.jpg" alt="Aya Sushi Sake vs Wine" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Aya Sushi</span><span>Sake vs Wine</span></div>'" /><div class="gallery-item-caption">Sake vs Wine</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/aya-sushi/social-media-posts/aya-sushi-now-hiring-1.jpg" alt="Aya Sushi Now Hiring 1" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Aya Sushi</span><span>Now Hiring</span></div>'" /><div class="gallery-item-caption">Now Hiring</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/aya-sushi/social-media-posts/aya-sushi-now-hiring-2.jpg" alt="Aya Sushi Now Hiring 2" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Aya Sushi</span><span>Now Hiring</span></div>'" /><div class="gallery-item-caption">Now Hiring</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/aya-sushi/social-media-posts/aya-sushi-closed-monday-25.jpg" alt="Aya Sushi Closed Monday the 25th" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Aya Sushi</span><span>Closed Monday — 25th</span></div>'" /><div class="gallery-item-caption">Closed Monday — 25th</div></div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="reveal">
+      <p class="gallery-label">Copper Espresso Cafe — 6 Posts + 1 Print</p>
+      <div class="gallery-grid-3">
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/copper-espresso-cafe/social-media-posts/copper-soft-opening.jpg" alt="Copper Espresso Cafe Soft Opening" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Copper</span><span>Soft Opening</span></div>'" /><div class="gallery-item-caption">Soft Opening</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/copper-espresso-cafe/social-media-posts/copper-were-open-hours.png" alt="Copper Espresso Cafe We're Open — Hours" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Copper</span><span>We&#39;re Open — Hours</span></div>'" /><div class="gallery-item-caption">We're Open — Hours</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/copper-espresso-cafe/social-media-posts/copper-new-hours.jpg" alt="Copper Espresso Cafe New Hours" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Copper</span><span>New Hours</span></div>'" /><div class="gallery-item-caption">New Hours</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/copper-espresso-cafe/social-media-posts/copper-beignets-hours.jpg" alt="Copper Espresso Cafe Beignets Hours" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Copper</span><span>Beignets Hours</span></div>'" /><div class="gallery-item-caption">Beignets Hours</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/copper-espresso-cafe/social-media-posts/copper-beignets-tuesday-discount.jpg" alt="Copper Espresso Cafe Beignets Tuesday Discount" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Copper</span><span>Beignets — Tuesday Discount</span></div>'" /><div class="gallery-item-caption">Beignets — Tuesday Discount</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/copper-espresso-cafe/social-media-posts/copper-labor-day.jpg" alt="Copper Espresso Cafe Labor Day" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Copper</span><span>Labor Day</span></div>'" /><div class="gallery-item-caption">Labor Day</div></div>
+      </div>
+      <div class="gallery-full" style="margin-top:3px;">
+        <img src="images/f&amp;b-graphics/copper-espresso-cafe/print/copper-yuzu-cold-brew-print.png" alt="Copper Espresso Cafe Yuzu Cold Brew — Print" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'aspect-ratio:16/9;\'><span>Copper</span><span>Yuzu Cold Brew — Print</span></div>'" />
+        <div class="gallery-item-caption">Yuzu Cold Brew — Print</div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="reveal">
+      <p class="gallery-label">Others — 5 Posts</p>
+      <div class="gallery-grid-3">
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/others/social-media-posts/others-ka-sushi-bluefin-tuna-breakdown.jpg" alt="KA Sushi &amp; Bar Bluefin Tuna Breakdown" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>KA Sushi &amp; Bar</span><span>Bluefin Tuna Breakdown</span></div>'" /><div class="gallery-item-caption">KA Sushi &amp; Bar — Bluefin Tuna Breakdown</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/others/social-media-posts/others-parlor-doughnuts-opening-hours.jpg" alt="Parlor Doughnuts Opening Hours" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Parlor Doughnuts</span><span>Opening Hours</span></div>'" /><div class="gallery-item-caption">Parlor Doughnuts — Opening Hours</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/others/social-media-posts/others-parlor-doughnuts-now-hiring.jpg" alt="Parlor Doughnuts Now Hiring" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Parlor Doughnuts</span><span>Now Hiring</span></div>'" /><div class="gallery-item-caption">Parlor Doughnuts — Now Hiring</div></div>
+      </div>
+      <div class="gallery-grid-2">
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/others/social-media-posts/others-parlor-doughnuts-anniversary.jpg" alt="Parlor Doughnuts Anniversary" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Parlor Doughnuts</span><span>Anniversary</span></div>'" /><div class="gallery-item-caption">Parlor Doughnuts — Anniversary</div></div>
+        <div class="gallery-item"><img src="images/f&amp;b-graphics/others/social-media-posts/others-parlor-doughnuts-millennial-vs-genz.jpg" alt="Parlor Doughnuts Millennial vs Gen Z" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Parlor Doughnuts</span><span>Millennial vs Gen Z</span></div>'" /><div class="gallery-item-caption">Parlor Doughnuts — Millennial vs Gen Z</div></div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="case-grid reveal">
+      <span class="case-label">The Process</span>
+      <div class="case-body">
+        <h2 class="case-heading">Read the brand before you open the software.</h2>
+        <p class="case-text">Jumping between four different F&amp;B brands in the same week meant the process had to start the same way every time: look at what the brand had already posted, figure out what "on-brand" actually meant for them, then design inside those lines.</p>
+        <ul class="case-bullets">
+          <li><strong>Fast turnaround</strong> — most of these were tied to a specific date (an event, a holiday, an hours change), so the design had to be locked and exported quickly.</li>
+          <li><strong>Format-aware</strong> — feed posts, story graphics, and the one print piece for Copper each needed their own crop, hierarchy, and file setup.</li>
+          <li><strong>Brand-specific voice</strong> — Casa Kenji's Latin Night series, Aya Sushi's cleaner omakase style, and Copper's warmer café tone all needed to look like they came from different places, because they did.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scraps-zone reveal" id="scraps">
+      <div class="scrap-zone-hint">drag the notes around</div>
+      <div class="scrap" style="top:30px; left:5%; transform:rotate(-2deg)"><div class="scrap-pin"></div>Four brands, four moods. Casa Kenji's Latin Nights hit completely different from Aya's omakase posts.</div>
+      <div class="scrap" style="top:20px; left:32%; transform:rotate(1.5deg); background:#efe6c8;"><div class="scrap-pin"></div>Copper's print piece was the first non-digital deliverable in this batch — had to think in CMYK, not RGB.</div>
+      <div class="scrap" style="top:40px; left:58%; transform:rotate(-1deg);"><div class="scrap-pin"></div>Hours &amp; closures posts look simple but they're the ones that actually get read the closest.</div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="case-grid reveal">
+      <span class="case-label">The Outcome</span>
+      <div class="case-body">
+        <h2 class="case-heading">Small jobs, real reps.</h2>
+        <p class="case-text">27 pieces across four clients — feed posts, story graphics, and one printed piece — each one built quickly, on-brand, and ready to post the same day it was needed.</p>
+        <div class="pull-quote">These are the jobs that don't make it into a big case study on their own, but doing four brand voices well in the same week is its own kind of practice.</div>
+        <p class="case-text">Every client here came back for more than one post, which is its own small proof that the work was landing.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="next-project reveal">
+    <span class="next-label">Next Project</span>
+    <a href="project-rb-tea-brand-identity.html" class="next-link">R&amp;B Tea Houston Brand Identity <span>→</span></a>
+  </div>
+
+  <footer>
+    <span>© 2026 Thu Nguyen. All rights reserved.</span>
+    <span class="footer-mark">✦</span>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    document.querySelectorAll('.scrap').forEach(scrap => {
+      let dragging = false, ox = 0, oy = 0;
+      scrap.addEventListener('mousedown', e => {
+        dragging = true; scrap.classList.add('dragging');
+        const r = scrap.getBoundingClientRect();
+        ox = e.clientX - r.left; oy = e.clientY - r.top;
+        e.preventDefault();
+      });
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        const zr = document.getElementById('scraps').getBoundingClientRect();
+        scrap.style.left = (e.clientX - zr.left - ox) + 'px';
+        scrap.style.top  = (e.clientY - zr.top  - oy) + 'px';
+      });
+      document.addEventListener('mouseup', () => { if (dragging) { dragging = false; scrap.classList.remove('dragging'); } });
+    });
+  </script>
+</body>
+</html>

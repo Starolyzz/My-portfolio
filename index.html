@@ -58,39 +58,19 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    .nav-menu-btn {
-      background: none; border: 1px solid var(--hairline);
+    .nav-resume {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--ink);
-      width: 2.1rem; height: 2.1rem;
+      text-decoration: none;
+      border: 1px solid var(--hairline);
+      padding: 0.55rem 1.1rem;
       border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      font-size: 0.9rem;
       transition: border-color .2s, color .2s;
     }
-    .nav-menu-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    .nav-overlay {
-      position: fixed; inset: 0 0 auto 0; top: 0;
-      background: var(--bg);
-      padding: 5.5rem 1.75rem 2rem;
-      display: flex; flex-direction: column; gap: 0.2rem;
-      z-index: 90;
-      transform: translateY(-100%);
-      transition: transform .35s ease;
-      border-bottom: 1px solid var(--hairline);
-    }
-    .nav-overlay.open { transform: translateY(0); }
-    .nav-overlay a {
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid var(--line);
-      transition: color .2s;
-    }
-    .nav-overlay a:hover { color: var(--accent); }
+    .nav-resume:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── HERO + SELECTED EXPERIENCE — one section, same row ── */
     #hero {
@@ -131,10 +111,12 @@
 
     .tl-row {
       display: grid;
-      grid-template-columns: 6.5rem 1fr;
+      grid-template-columns: 6.5rem 1fr 1fr;
       gap: 1rem;
       padding: 1.05rem 0;
+      border-bottom: 1px solid var(--hairline);
     }
+    .tl-row:last-child { border-bottom: none; }
     .tl-year {
       font-size: 0.72rem;
       color: var(--muted);
@@ -145,10 +127,9 @@
       font-size: 0.92rem;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 0.2rem;
       letter-spacing: -0.005em;
     }
-    .tl-role { font-size: 0.74rem; font-weight: 300; color: var(--muted); }
+    .tl-role { font-size: 0.78rem; font-weight: 300; color: var(--muted); }
 
     /* ── SELECTED WORK ── */
     #work { padding: 1rem 0 4rem; }
@@ -284,7 +265,7 @@
     }
     @media (max-width: 640px) {
       .about-row { grid-template-columns: 1fr; gap: 1.5rem; }
-      .tl-row { grid-template-columns: 5.5rem 1fr; }
+      .tl-row { grid-template-columns: 1fr; gap: 0.3rem; }
       .work-grid { gap: 1.25rem; padding: 1.25rem 1.25rem 0; }
       .work-cell { flex-basis: 100%; }
     }
@@ -297,13 +278,9 @@
       <a href="#hero" class="nav-logo">Thu <em>✦</em> Nguyen</a>
       <span class="nav-role">Graphic Designer</span>
     </div>
-    <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    <!-- TODO(Star): swap this href for your real Google Drive/Docs "view" link to your resume PDF -->
+    <a href="https://docs.google.com/document/d/1iMuDCwE72FMHC2I4Z-8gsIThYE8HC8ojlfLvLe3Z8_4/edit?usp=sharing" target="_blank" rel="noopener" class="nav-resume">Resume</a>
   </nav>
-  <div class="nav-overlay" id="navOverlay">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
 
   <section id="hero">
     <div class="hero-text">
@@ -314,19 +291,23 @@
     <div class="tl-block">
       <div class="tl-row">
         <span class="tl-year">2026 — Present</span>
-        <div><p class="tl-org">All In Media Creative</p><p class="tl-role">Freelance Graphic Designer · Remote</p></div>
+        <p class="tl-org">All In Media Creative</p>
+        <p class="tl-role">Freelance Graphic Designer</p>
       </div>
       <div class="tl-row">
         <span class="tl-year">2024 — 2026</span>
-        <div><p class="tl-org">Houston Pain Relief &amp; Wellness Clinic</p><p class="tl-role">Marketing &amp; IT Assistant · Houston, TX</p></div>
+        <p class="tl-org">Houston Pain Relief &amp; Wellness Clinic</p>
+        <p class="tl-role">Marketing &amp; IT Assistant</p>
       </div>
       <div class="tl-row">
         <span class="tl-year">2024</span>
-        <div><p class="tl-org">[P1] Game</p><p class="tl-role">Volunteer Game Artist · Remote</p></div>
+        <p class="tl-org">[P1] Game</p>
+        <p class="tl-role">Volunteer Game Artist</p>
       </div>
       <div class="tl-row">
         <span class="tl-year">2022</span>
-        <div><p class="tl-org">Papellerie</p><p class="tl-role">Graphic Design Intern · Houston, TX</p></div>
+        <p class="tl-org">Papellerie</p>
+        <p class="tl-role">Graphic Design Intern</p>
       </div>
     </div>
   </section>
@@ -334,67 +315,78 @@
   <section id="work">
     <div class="work-head">
       <span class="work-label">Selected Work</span>
-      <span class="work-count">05 Projects</span>
+      <span class="work-count">06 Projects</span>
     </div>
 
     <div class="work-grid">
-      <a href="project-social-media.html" class="work-cell">
+      <a href="project-fb-graphics.html" class="work-cell">
         <div class="work-thumb">
-          <img src="images/cs-post-a.jpg" alt="Social media post design for R&B Tea Houston and The Claw Spot" />
+          <img src="images/f&b-graphics/thumbnail/thumbnail.jpg" alt="F&amp;B Graphics thumbnail" />
           <span class="work-arrow">↗</span>
         </div>
         <div class="work-cap">
-          <div class="work-cap-top"><span class="work-num">01</span><span class="work-title">Social Media Design</span></div>
-          <span class="work-meta">R&amp;B Tea Houston · The Claw Spot</span>
+          <div class="work-cap-top"><span class="work-num">01</span><span class="work-title">F&amp;B Graphics</span></div>
+          <span class="work-meta">Social · Story &amp; Print Flyers</span>
         </div>
       </a>
 
-      <a href="project-menu.html" class="work-cell">
+      <a href="project-rb-tea-brand-identity.html" class="work-cell">
         <div class="work-thumb">
-          <img src="images/menu-placemat.jpg" alt="Placemat menu design for Di An Pho and R&B Tea Houston" />
+          <img src="images/rb-tea-brand-identity/thumbnail/thumbnail.jpg" alt="R&B Tea Houston brand identity thumbnail" />
           <span class="work-arrow">↗</span>
         </div>
         <div class="work-cap">
-          <div class="work-cap-top"><span class="work-num">02</span><span class="work-title">Menu Design</span></div>
-          <span class="work-meta">Di An Pho · R&amp;B Tea Houston</span>
+          <div class="work-cap-top"><span class="work-num">02</span><span class="work-title">R&amp;B Tea Houston Brand Identity</span></div>
+          <span class="work-meta">Social · Menu Screens · Event Flyers</span>
         </div>
       </a>
 
-      <a href="project-claw-spot-logo.html" class="work-cell">
+      <a href="project-di-an-pho-brand-identity.html" class="work-cell">
         <div class="work-thumb">
-          <img src="images/logo-claw-spot-render1.jpg" alt="The Claw Spot logo render" />
+          <img src="images/di-an-pho-brand-identity/thumbnail/thumbnail.jpg" alt="Di An Pho brand identity thumbnail" />
           <span class="work-arrow">↗</span>
         </div>
         <div class="work-cap">
-          <div class="work-cap-top"><span class="work-num">03</span><span class="work-title">The Claw Spot Logo</span></div>
+          <div class="work-cap-top"><span class="work-num">03</span><span class="work-title">Di An Pho Brand Identity</span></div>
+          <span class="work-meta">Print Menu · Placemat</span>
+        </div>
+      </a>
+
+      <a href="project-claw-spot-brand-identity.html" class="work-cell">
+        <div class="work-thumb">
+          <img src="images/claw-spot-brand-identity/thumbnail/thumbnail.jpg" alt="The Claw Spot brand identity thumbnail" />
+          <span class="work-arrow">↗</span>
+        </div>
+        <div class="work-cap">
+          <div class="work-cap-top"><span class="work-num">04</span><span class="work-title">The Claw Spot Brand Identity</span></div>
           <span class="work-meta">The Claw Spot, Houston TX</span>
         </div>
       </a>
 
-      <a href="project-logo-collection.html" class="work-cell">
+      <a href="project-logofolio.html" class="work-cell">
         <div class="work-thumb">
           <div class="work-collage">
-            <img src="images/logo-banh-mi-7am.jpg" alt="Banh Mi 7AM logo" />
-            <img src="images/logo-doi-xiu.jpg" alt="Doi Xiu logo" />
-            <img src="images/logo-drip-saigon.jpg" alt="Drip Saigon logo" />
-            <img src="images/logo-sac-dep.jpg" alt="Sac Dep logo" />
+            <img src="images/logofolio/logos/logo-banh-mi-7am.jpg" alt="Banh Mi 7AM logo" />
+            <img src="images/logofolio/logos/logo-doi-xiu.jpg" alt="Doi Xiu logo" />
+            <img src="images/logofolio/logos/logo-drip-saigon.jpg" alt="Drip Saigon logo" />
+            <img src="images/logofolio/logos/logo-sac-dep.jpg" alt="Sac Dep logo" />
           </div>
           <span class="work-arrow">↗</span>
         </div>
         <div class="work-cap">
-          <div class="work-cap-top"><span class="work-num">04</span><span class="work-title">Logo Collection</span></div>
+          <div class="work-cap-top"><span class="work-num">05</span><span class="work-title">Logofolio</span></div>
           <span class="work-meta">10 Houston Brands</span>
         </div>
       </a>
 
-      <a href="project-flyers-posters.html" class="work-cell work-cell--full">
+      <a href="project-poster-design.html" class="work-cell">
         <div class="work-thumb">
-          <img src="images/flyer-carmeet-a.jpg" alt="Car meet event flyer" />
+          <img src="images/poster-design/thumbnail/thumbnail.jpg" alt="Poster design thumbnail" />
           <span class="work-arrow">↗</span>
         </div>
         <div class="work-cap">
-          <div class="work-cap-top"><span class="work-num">05</span><span class="work-title">Flyers &amp; Posters</span></div>
-          <span class="work-meta">Event Work · Personal Projects</span>
+          <div class="work-cap-top"><span class="work-num">06</span><span class="work-title">Poster Design</span></div>
+          <span class="work-meta">Personal Projects</span>
         </div>
       </a>
     </div>
@@ -428,23 +420,5 @@
     <span>Designed &amp; built by me ✦</span>
   </footer>
 
-  <script>
-    (function(){
-      var btn = document.getElementById('menuBtn');
-      var overlay = document.getElementById('navOverlay');
-      if(btn && overlay){
-        btn.addEventListener('click', function(){
-          overlay.classList.toggle('open');
-          btn.textContent = overlay.classList.contains('open') ? '✕' : '☰';
-        });
-        overlay.querySelectorAll('a').forEach(function(a){
-          a.addEventListener('click', function(){
-            overlay.classList.remove('open');
-            btn.textContent = '☰';
-          });
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
