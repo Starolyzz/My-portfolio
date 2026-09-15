@@ -165,7 +165,7 @@
     .work-thumb {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 2000 / 1414;
       overflow: hidden;
       background: var(--bg-raised);
     }
@@ -188,17 +188,6 @@
       transition: opacity .25s ease, transform .25s ease;
     }
     .work-cell:hover .work-arrow { opacity: 1; transform: translateY(0); }
-    .work-collage {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 2px;
-      background: var(--line);
-    }
-    .work-collage img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
     .work-cap {
       padding: 0.95rem 1.1rem 1.4rem;
       display: flex;
@@ -278,7 +267,6 @@
       <a href="#hero" class="nav-logo">Thu <em>✦</em> Nguyen</a>
       <span class="nav-role">Graphic Designer</span>
     </div>
-    <!-- TODO(Star): swap this href for your real Google Drive/Docs "view" link to your resume PDF -->
     <a href="https://docs.google.com/document/d/1iMuDCwE72FMHC2I4Z-8gsIThYE8HC8ojlfLvLe3Z8_4/edit?usp=sharing" target="_blank" rel="noopener" class="nav-resume">Resume</a>
   </nav>
 
@@ -286,7 +274,7 @@
     <div class="hero-text">
       <p class="hero-eyebrow">Graphic Designer · Great Falls, VA</p>
       <h1 class="hero-headline">Hi, I'm Thu ★, a designer that loves the color <em>blue</em>.</h1>
-      <p class="hero-sub">I'm passionate about exploring a brand's story and how it can be told through visuals.</p>
+      <p class="hero-sub">I like digging into a brand's story and figuring out how to tell it visually.</p>
     </div>
     <div class="tl-block">
       <div class="tl-row">
@@ -365,12 +353,7 @@
 
       <a href="project-logofolio.html" class="work-cell">
         <div class="work-thumb">
-          <div class="work-collage">
-            <img src="images/logofolio/logos/logo-banh-mi-7am.jpg" alt="Banh Mi 7AM logo" />
-            <img src="images/logofolio/logos/logo-doi-xiu.jpg" alt="Doi Xiu logo" />
-            <img src="images/logofolio/logos/logo-drip-saigon.jpg" alt="Drip Saigon logo" />
-            <img src="images/logofolio/logos/logo-sac-dep.jpg" alt="Sac Dep logo" />
-          </div>
+          <img src="images/logofolio/thumbnail/thumbnail.jpg" alt="Logofolio thumbnail" />
           <span class="work-arrow">↗</span>
         </div>
         <div class="work-cap">
@@ -396,8 +379,8 @@
     <p class="about-label">About</p>
     <div class="about-row">
       <div>
-        <p class="about-bio">A freelance graphic designer based in Great Falls, VA, with a strong passion for design and visual arts. I've built a solid foundation through academic training and hands-on experience in both corporate and agency settings across a range of creative projects.</p>
-        <p class="about-bio">My core strengths include 2D design and the development of visual concepts and brand identity. I love creating ideas from scratch and exploring different media. I also love learning new things to add to my skillset (psst — I'm learning motion design), because as they say, "a jack of all trades is a master of none, but oftentimes better than a master of one."</p>
+        <p class="about-bio">I'm a freelance graphic designer based in Great Falls, VA. I trained formally, then picked up more from working inside actual corporate and agency settings, where the deadlines are real and nobody's grading on a curve.</p>
+        <p class="about-bio">I'm strongest in 2D design and brand identity work — turning a rough idea into a visual concept people recognize. I like starting from a blank page and I like switching media so I don't get stuck in one groove (psst — I'm learning motion design right now), because as they say, "a jack of all trades is a master of none, but oftentimes better than a master of one."</p>
       </div>
       <div class="about-tools">
         <span class="tool-tag">Photoshop</span>

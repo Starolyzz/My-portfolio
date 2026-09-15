@@ -142,12 +142,13 @@
     .gallery-grid-tv { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; margin-top: 3px; }
     .gallery-grid-3v { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
     .carmeet-grid { display: grid; grid-template-columns: 1fr 1fr 0.55fr; grid-template-rows: auto auto; gap: 3px; }
-    .carmeet-grid .flyer { aspect-ratio: 1 / 1.414; }
+    .carmeet-grid .flyer { aspect-ratio: 4/5; }
     .carmeet-grid .story { grid-row: 1 / 3; aspect-ratio: 9/16; }
     .poster-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
     .poster-grid-2 .gallery-item { aspect-ratio: 2/3; }
 
     .gallery-item { aspect-ratio: 1; background: var(--bg-raised); overflow: hidden; position: relative; }
+    .gallery-item--45 { aspect-ratio: 4/5; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
     .gallery-item:hover img { transform: scale(1.03); }
     .gallery-item-caption {
@@ -290,7 +291,7 @@
       <div class="case-body">
         <h2 class="case-heading">One brand, growing into every format.</h2>
         <p class="case-text"><strong>R&B Tea Houston</strong> had an existing social presence, but the posts felt generic — there was no clear visual identity tying them together. My job was to bring coherence and personality to their feed.</p>
-        <p class="case-text">The relationship grew from there. As their in-house TV menus needed a refresh for in-store display, and their car meet events needed promotional flyers, I stayed on as the designer carrying the same visual language across every new format the brand picked up.</p>
+        <p class="case-text">The relationship grew from there. Their in-house TV menus needed a refresh, then their car meet events needed promotional flyers, and I just stayed on — carrying the same visual language into whatever new format the brand picked up next.</p>
       </div>
     </div>
 
@@ -299,14 +300,14 @@
     <div class="reveal">
       <p class="gallery-label">Social Media Posts — 8 Posts</p>
       <div class="gallery-grid-4">
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-pandan-jelly.jpg" alt="Pandan Jelly Vietnamese Yogurt" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Pandan Jelly Vietnamese Yogurt</span></div>'" /><div class="gallery-item-caption">Pandan Jelly Vietnamese Yogurt</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-coco-matcha.jpg" alt="Coco Matcha" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Coco Matcha</span></div>'" /><div class="gallery-item-caption">Coco Matcha</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-puffle-waffle.jpg" alt="Puffle Waffle" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Puffle Waffle</span></div>'" /><div class="gallery-item-caption">Puffle Waffle</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-happy-hour.jpg" alt="Happy Hour BOGO" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Happy Hour BOGO</span></div>'" /><div class="gallery-item-caption">Happy Hour BOGO</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-valentines.jpg" alt="Valentine's BOGO" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Valentine&#39;s BOGO</span></div>'" /><div class="gallery-item-caption">Valentine's BOGO</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-midtown.jpg" alt="New Location — Midtown" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>New Location — Midtown</span></div>'" /><div class="gallery-item-caption">New Location — Midtown</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-birthday.jpg" alt="Happy Birthday R&B Tea Chinatown" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Happy Birthday Chinatown</span></div>'" /><div class="gallery-item-caption">Happy Birthday — 3 Years</div></div>
-        <div class="gallery-item"><img src="images/rb-tea-brand-identity/social-media-posts/rb-birthday-promo.jpg" alt="Birthday Free Drink Promo" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Birthday Free Drink Promo</span></div>'" /><div class="gallery-item-caption">Birthday Free Drink Promo</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-pandan-jelly.jpg" alt="Pandan Jelly Vietnamese Yogurt" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Pandan Jelly Vietnamese Yogurt</span></div>'" /><div class="gallery-item-caption">Pandan Jelly Vietnamese Yogurt</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-coco-matcha.jpg" alt="Coco Matcha" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Coco Matcha</span></div>'" /><div class="gallery-item-caption">Coco Matcha</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-puffle-waffle.jpg" alt="Puffle Waffle" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Puffle Waffle</span></div>'" /><div class="gallery-item-caption">Puffle Waffle</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-happy-hour.jpg" alt="Happy Hour BOGO" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Happy Hour BOGO</span></div>'" /><div class="gallery-item-caption">Happy Hour BOGO</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-valentines.jpg" alt="Valentine's BOGO" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Valentine&#39;s BOGO</span></div>'" /><div class="gallery-item-caption">Valentine's BOGO</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-midtown.jpg" alt="New Location — Midtown" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>New Location — Midtown</span></div>'" /><div class="gallery-item-caption">New Location — Midtown</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-birthday.jpg" alt="Happy Birthday R&B Tea Chinatown" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Happy Birthday Chinatown</span></div>'" /><div class="gallery-item-caption">Happy Birthday — 3 Years</div></div>
+        <div class="gallery-item gallery-item--45"><img src="images/rb-tea-brand-identity/social-media-posts/rb-birthday-promo.jpg" alt="Birthday Free Drink Promo" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>R&amp;B Tea</span><span>Birthday Free Drink Promo</span></div>'" /><div class="gallery-item-caption">Birthday Free Drink Promo</div></div>
       </div>
     </div>
 
@@ -373,7 +374,7 @@
         </div>
       </div>
       <div style="margin-top:3px;">
-        <div class="gallery-item" style="aspect-ratio:16/9;">
+        <div class="gallery-item" style="aspect-ratio:4/5;">
           <img src="images/rb-tea-brand-identity/flyers/flyer-carmeet-e.jpg" alt="Car Meet Flyer E" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'><span>Car Meet</span><span>Flyer E</span></div>'" />
           <div class="gallery-item-caption">Flyer</div>
         </div>
@@ -389,9 +390,9 @@
         <p class="case-text">My process typically started on Pinterest — gathering references that matched the mood, colour palette, or season of the upcoming piece before touching any design software. This kept the work visually current without losing the brand's own character, whether it was landing in a phone feed, on a screen ten feet away, or printed on a flyer.</p>
         <p class="case-text">Three principles guided every piece:</p>
         <ul class="case-bullets">
-          <li><strong>Colour palette logic</strong> — the palette had to make sense for both the brand and the specific product or theme being featured.</li>
-          <li><strong>Typographic consistency</strong> — fonts were locked early and treated as non-negotiable, across every format.</li>
-          <li><strong>Legibility at scale</strong> — the TV menus in particular needed real product photography and clear hierarchy readable from across the room.</li>
+          <li>The palette had to make sense for both the brand and whatever product or theme was on deck that week.</li>
+          <li>Fonts got locked in early and I didn't touch them again — same type, every format, no exceptions.</li>
+          <li>The TV menus were the real test: real product photography and a hierarchy you could actually read from across the room, not just up close on a phone.</li>
         </ul>
       </div>
     </div>
@@ -410,7 +411,7 @@
       <span class="case-label">The Outcome</span>
       <div class="case-body">
         <h2 class="case-heading">One identity, every touchpoint.</h2>
-        <p class="case-text">A steady volume of feed content covering product features, promotional events, and holiday posts; TV menus now running across locations in both horizontal and vertical formats; and a run of car meet flyers distributed across print and social for real event audiences.</p>
+        <p class="case-text">There's a steady stream of feed content now — product features, promos, holiday posts. TV menus run across locations in both horizontal and vertical formats. And a run of car meet flyers made it out into print and social for actual event crowds, not just the feed.</p>
         <div class="pull-quote">What I'm most proud of is how this grew from a handful of Instagram posts into a full, multi-format identity — feed content, screen menus, and event materials that all still feel like one brand.</div>
         <p class="case-text">Every piece started with the brand, ended with the brief, and found its own visual personality somewhere in between.</p>
       </div>
